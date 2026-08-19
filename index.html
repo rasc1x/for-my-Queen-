@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О тебе ✨</title>
+    <style>
+        body { background: #0b0e14; color: #fff; font-family: 'Helvetica Neue', Arial, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; }
+        .container { text-align: center; max-width: 600px; padding: 30px; z-index: 2; }
+        .stars-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        h1 { font-weight: 200; font-size: 1.2rem; color: #888; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 50px; }
+        .sparkle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; justify-content: center; }
+        .star { padding: 20px; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; cursor: pointer; transition: 0.5s; background: rgba(255,255,255,0.03); }
+        .star:hover { background: rgba(255,255,255,0.1); transform: scale(1.05); border-color: rgba(255,255,255,0.3); }
+        #display-area { margin-top: 60px; font-size: 1.4rem; color: #f0f0f0; line-height: 1.5; min-height: 120px; font-style: italic; padding: 0 20px; transition: 0.6s; opacity: 0; }
+    </style>
+</head>
+<body>
+    <div class="stars-bg" id="bg"></div>
+    <div class="container">
+        <h1>Слова, которые я редко говорю вслух</h1>
+        <div class="sparkle-grid">
+            <div class="star" onclick="show(0)">✨</div>
+            <div class="star" onclick="show(1)">✨</div>
+            <div class="star" onclick="show(2)">✨</div>
+            <div class="star" onclick="show(3)">✨</div>
+            <div class="star" onclick="show(4)">✨</div>
+            <div class="star" onclick="show(5)">✨</div>
+        </div>
+        <div id="display-area">Нажми на звезду...</div>
+    </div>
+
+    <script>
+        const words = [
+            "Ты — воплощение редкой нежности и искренности, которые так сложно найти в этом мире.",
+            "Твоя улыбка обладает магической силой — она заставляет меня чувствовать себя по-настоящему счастливым.",
+            "Ты невероятно сильная, умная и глубокая. Я восхищаюсь тем, как ты смотришь на этот мир.",
+            "В тебе столько света, что даже на самом большом расстоянии я чувствую твое тепло.",
+            "Ты — самое прекрасное, что случалось со мной. Каждый день я открываю в тебе что-то новое и удивительное.",
+            "Твоя доброта и твое сердце делают этот мир лучше. Спасибо, что ты есть."
+        ];
+
+        function show(i) {
+            const area = document.getElementById('display-area');
+            area.style.opacity = 0;
+            setTimeout(() => {
+                area.innerText = words[i];
+                area.style.opacity = 1;
+            }, 300);
+        }
+
+        const bg = document.getElementById('bg');
+        for(let i=0; i<80; i++) {
+            let s = document.createElement('div');
+            s.style.position = 'absolute'; s.style.left = Math.random()*100 + '%';
+            s.style.top = Math.random()*100 + '%'; s.style.width = '2px'; s.style.height = '2px';
+            s.style.background = 'white'; s.style.borderRadius = '50%'; s.style.opacity = Math.random();
+            bg.appendChild(s);
+        }
+    </script>
+</body>
+</html>
